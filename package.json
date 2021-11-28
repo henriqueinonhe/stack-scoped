@@ -1,0 +1,28 @@
+{
+  "name": "call-stack-context",
+  "version": "1.0.0",
+  "description": "Like React Context API but with common functions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqueinonhe/call-stack-context.git"
+  },
+  "keywords": [
+    "context"
+  ],
+  "author": "Henrique Inonhe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/henriqueinonhe/call-stack-context/issues"
+  },
+  "homepage": "https://github.com/henriqueinonhe/call-stack-context#readme",
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.5.2"
+  }
+}
