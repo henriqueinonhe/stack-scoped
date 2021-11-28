@@ -2,10 +2,10 @@
   "name": "call-stack-context",
   "version": "1.0.0",
   "description": "Like React Context API but with common functions.",
-  "main": "index.js",
   "scripts": {
     "test": "npx jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepublishOnly": "npx tsc"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,14 @@
     "url": "https://github.com/henriqueinonhe/call-stack-context/issues"
   },
   "homepage": "https://github.com/henriqueinonhe/call-stack-context#readme",
+  "files": [
+    "dist/index.d.ts",
+    "dist/index.js",
+    "dist/types.js",
+    "dist/types.d.ts"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
@@ -34,10 +42,10 @@
   },
   "lint-staged": {
     "*.ts": [
-      "tsc --noemit .",
-      "npx eslint --cache ."
+      "tsc --noemit",
+      "npx eslint --cache ./src"
     ],
-    "*.{ts,css,md}": "npx prettier --write .",
+    "*.{ts,css,md}": "npx prettier --write ./src",
     "*.test.ts": "npm run test"
   }
 }
