@@ -33,7 +33,11 @@
     "typescript": "^4.5.2"
   },
   "lint-staged": {
-    "*.js": "npx eslint --cache .",
-    "*.{js,css,md}": "npx prettier --write ."
+    "*.ts": [
+      "tsc --noemit .",
+      "npx eslint --cache ."
+    ],
+    "*.{ts,css,md}": "npx prettier --write .",
+    "*.test.ts": "npm run test"
   }
 }
