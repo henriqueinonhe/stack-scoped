@@ -89,7 +89,7 @@ describe("createContext()", () => {
 
   describe("When using different providers for each call stack", () => {
     const context = createContext<number>();
-    let values: Array<number> = [];
+    const values: Array<number> = [];
 
     const a = () => {
       context.provide(10, () => {
@@ -122,7 +122,7 @@ describe("createContext()", () => {
 
   describe("When overriding providers", () => {
     const context = createContext<number>();
-    let values: Array<number> = [];
+    const values: Array<number> = [];
 
     const a = () => {
       context.provide(10, () => {
@@ -205,7 +205,7 @@ describe("createContext()", () => {
 
   describe("When using curried version of provider", () => {
     const context = createContext<number>();
-    let values: Array<number> = [];
+    const values: Array<number> = [];
 
     const a = () => {
       const loadedProvider = context.provide(10);
@@ -330,7 +330,7 @@ describe("createOptionalContext()", () => {
 
   describe("When using different providers for each call stack", () => {
     const context = createOptionalContext<number>();
-    let values: Array<number> = [];
+    const values: Array<number> = [];
 
     const a = () => {
       context.provide(10, () => {
@@ -363,7 +363,7 @@ describe("createOptionalContext()", () => {
 
   describe("When overriding providers", () => {
     const context = createOptionalContext<number>();
-    let values: Array<number> = [];
+    const values: Array<number> = [];
 
     const a = () => {
       context.provide(10, () => {
