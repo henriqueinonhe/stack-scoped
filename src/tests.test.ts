@@ -211,19 +211,21 @@ describe("createContext()", () => {
       const loadedProvider = context.provide(10);
       loadedProvider(() => {
         b();
-        c();
       });
     };
 
     const b = () => {
-      d();
-    };
-
-    const c = () => {
       const loadedProvider = context.provide(20);
+
+      c();
+
       loadedProvider(() => {
         d();
       });
+    };
+
+    const c = () => {
+      d();
     };
 
     const d = () => {
@@ -234,6 +236,83 @@ describe("createContext()", () => {
 
     it("Works as expected", () => {
       expect(values).toStrictEqual([10, 20]);
+    });
+  });
+
+  describe("When calling function with provider and then without provider after (testing popping stack values)", () => {
+    const context = createContext<number>();
+    const values: Array<number> = [];
+
+    const a = () => {
+      context.provide(10, () => {
+        b();
+        c();
+      });
+    };
+
+    const b = () => {
+      context.provide(20, () => {
+        d();
+      });
+    };
+
+    const c = () => {
+      d();
+    };
+
+    const d = () => {
+      values.push(context.consume());
+    };
+
+    a();
+
+    it("Works as expected", () => {
+      expect(values).toStrictEqual([20, 10]);
+    });
+  });
+
+  describe("When subRoutine passed to provider throws", () => {
+    const context = createContext<number>();
+
+    const a = () => {
+      context.provide(10, () => {
+        b();
+      });
+    };
+
+    const b = () => {
+      throw new Error();
+    };
+
+    const c = () => {
+      return context.consume();
+    };
+
+    try {
+      a();
+    } catch {
+      // Swallow error
+    }
+
+    it("Stack is properly cleared ", () => {
+      expect(c).toThrowError(NoProviderError);
+    });
+  });
+
+  describe("When using setTimeout", () => {
+    const context = createContext<{ value: number }>();
+
+    it("Works as expected", () => {
+      const a = () => {
+        context.provide({ value: 10 }, () => {
+          const wrapper = context.consume();
+          setTimeout(() => {
+            expect(wrapper.value).toBe(10);
+          });
+        });
+      };
+
+      a();
     });
   });
 });

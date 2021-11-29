@@ -76,14 +76,24 @@ const makeConsumeOptionalContextValue =
 const makeCurriedProvideContextValue =
   <T>(symbol: symbol) =>
   (value: T) => {
-    pushContextValue(symbol, value);
-
     return <U>(subRoutine: () => U) => {
-      const returnValue = subRoutine();
+      pushContextValue(symbol, value);
 
-      popContextValue(symbol);
+      try {
+        const returnValue = subRoutine();
 
-      return returnValue;
+        popContextValue(symbol);
+
+        return returnValue;
+      } catch (error) {
+        if (error instanceof NoProviderError) {
+          throw error;
+        }
+
+        popContextValue(symbol);
+
+        throw error;
+      }
     };
   };
 
