@@ -1,5 +1,5 @@
 {
-  "name": "call-stack-context",
+  "name": "stack-scoped",
   "version": "1.0.0",
   "description": "Like React Context API but with common functions.",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/henriqueinonhe/call-stack-context.git"
+    "url": "git+https://github.com/henriqueinonhe/stack-scoped.git"
   },
   "keywords": [
     "context"
@@ -17,9 +17,9 @@
   "author": "Henrique Inonhe",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/henriqueinonhe/call-stack-context/issues"
+    "url": "https://github.com/henriqueinonhe/stack-scoped/issues"
   },
-  "homepage": "https://github.com/henriqueinonhe/call-stack-context#readme",
+  "homepage": "https://github.com/henriqueinonhe/stack-scoped#readme",
   "files": [
     "dist/index.d.ts",
     "dist/index.js",
