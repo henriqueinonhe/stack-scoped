@@ -1,6 +1,6 @@
 {
   "name": "stack-scoped",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Like React Context API but with ordinary functions.",
   "scripts": {
     "test": "npx jest",
