@@ -4,6 +4,20 @@ Like React Context API but with ordinary functions.
 
 Create scopes that encompass slices of your call stack.
 
+## Table of Contents
+
+- [Installing](#installing)
+- [Example](#example)
+- [API](#api)
+  - [createContext](#createcontext)
+  - [createOptionalContext](#createoptionalcontext)
+  - [composeProviders](#composeproviders)
+- [Testing](#testing)
+- [Limitations](#limitations)
+- [Advanced Usage](#advanced-usage)
+- [Motivation](#motivation)
+- [Intended Use Case](#intended-use-case)
+
 ## Installing
 
 ```sh
@@ -461,7 +475,7 @@ This library offers another possible answer to this question by implementing a s
 
 Also, as variables in an inner scope shadow/override variables from an outer scope, so does this _"in between scope"_, such that scopes created deeper in the call tree override scopes (originated from the same context) created higher up in the tree.
 
-## Use Case
+## Intended Use Case
 
 Suppose you are developing a social network where **users** can create **pages**, these pages have **posts**, and each post has **comments**.
 
