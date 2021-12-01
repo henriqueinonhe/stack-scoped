@@ -699,7 +699,7 @@ function deserializeUser(user, showHighlighting) {
   };
 }
 
-function deserializePage(page, userId, showHighlighting) {
+function deserializePage(context, page) {
   return {
     id: page.id,
     name: page.name,
@@ -707,7 +707,7 @@ function deserializePage(page, userId, showHighlighting) {
   };
 }
 
-function deserializePost(post, userId, showHighlighting) {
+function deserializePost(context, post) {
   return {
     id: post.id,
     title: post.title,
