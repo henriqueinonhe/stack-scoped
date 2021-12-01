@@ -36,21 +36,26 @@ const context = createContext();
 const { provide, consume } = context;
 
 const a = () => {
-  // Here we provide a value for this
-  // call sub-tree, like a scope that
-  // spans a whole slice of the call
-  // stack.
   provide({ value: 10 }, () => {
+    // Anything that is called
+    // inside this function can retrieve
+    // this value by calling consume().
     b();
   });
 };
 
 const b = () => {
+  // Notice how there's no mention
+  // of the value provided in this function.
+  // It is completely unaware of it.
+
   c();
 };
 
 const c = () => {
-  // Consuming value from the current scope
+  // Even though this function takes no
+  // parameters it is able to access
+  // the value provided by function "a".
   const { value } = consume();
   console.log(value);
 };
@@ -739,7 +744,7 @@ function deserializeUser(user, showHighlighting) {
     id: user.id,
     name: user.name,
     pages: user.pages.map((page) =>
-      context.provider(contextValue, () => deserializePage(context, page))
+      context.provider(contextValue, () => deserializePage(page))
     ),
   };
 }
@@ -748,7 +753,7 @@ function deserializePage(page) {
   return {
     id: page.id,
     name: page.name,
-    posts: page.posts.map((post) => deserializePost(context, post)),
+    posts: page.posts.map((post) => deserializePost(post)),
   };
 }
 
@@ -756,9 +761,7 @@ function deserializePost(post) {
   return {
     id: post.id,
     title: post.title,
-    comments: post.comments.map((comment) =>
-      deserializeComment(context, comment)
-    ),
+    comments: post.comments.map((comment) => deserializeComment(comment)),
   };
 }
 
