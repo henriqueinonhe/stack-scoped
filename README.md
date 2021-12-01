@@ -29,6 +29,8 @@ Types are already included.
 ## Example
 
 ```js
+import { createContext } from "stack-scoped";
+
 // Create a context
 const context = createContext();
 
